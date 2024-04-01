@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<defaults>
+  <entry>
+    <key>showToastMessages</key>
+    <value>true</value>
+  </entry>
+  <entry>
+    <key>appLaunchDelay</key>
+    <value>8000</value>
+  </entry>
+</defaults>

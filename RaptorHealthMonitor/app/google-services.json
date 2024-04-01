@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "965522371326",
+    "project_id": "current-health-launcher",
+    "storage_bucket": "current-health-launcher.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:965522371326:android:82baa5c5f6c2bb5a5e6baf",
+        "android_client_info": {
+          "package_name": "com.currenthealth.raptorhealthmonitor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJGToHtaYBo2_oeINrY85UD248hHbgmjw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
