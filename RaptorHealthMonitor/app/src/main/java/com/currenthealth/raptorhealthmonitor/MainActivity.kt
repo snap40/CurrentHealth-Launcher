@@ -1,17 +1,14 @@
 package com.currenthealth.raptorhealthmonitor
 
-import android.app.ActivityManager
 import android.content.Intent
 import android.content.Intent.ACTION_VIEW
 import android.content.Intent.CATEGORY_BROWSABLE
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.content.Intent.FLAG_ACTIVITY_REQUIRE_NON_BROWSER
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.currenthealth.raptorhealthmonitor.util.TAG
 import com.google.firebase.ktx.Firebase
@@ -84,9 +81,9 @@ class MainActivity : AppCompatActivity() {
         appLaunchDelay = Firebase.remoteConfig.getLong("appLaunchDelay")
         showToast("App Launch delay is $appLaunchDelay")
         launchVivaLinkApp()
-        Thread(){ //Effort to make it smooth for the PFA app to launch -> Too much for the hybrid app maybe?
+        Thread() { //Effort to make it smooth for the PFA app to launch -> Too much for the hybrid app maybe?
             //Observed PFA showing black screen and crash
-            runBlocking (Dispatchers.IO) {
+            runBlocking(Dispatchers.IO) {
                 Log.i(TAG(), "onCreate: runBlobking")
                 delay(appLaunchDelay)
                 launch(Dispatchers.Main) {
@@ -105,7 +102,12 @@ class MainActivity : AppCompatActivity() {
             addCategory(CATEGORY_BROWSABLE)
             flags = FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_REQUIRE_NON_BROWSER
         }
-        startActivity(raptorIntent)
+        try {
+            startActivity(raptorIntent)
+        } catch (exception: Exception) {
+            Log.e(TAG(), "launchVivaLinkApp: FAILED TO LAUNCH MVM", exception)
+        }
+
         showToast("MVM Launched")
         Log.i(TAG(), "launchVivaLinkApp: COMPLETED")
     }
@@ -116,8 +118,12 @@ class MainActivity : AppCompatActivity() {
                 addCategory(CATEGORY_BROWSABLE)
                 flags = FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_REQUIRE_NON_BROWSER
             }
+        try {
+            startActivity(raptorIntent)
+        } catch (exception: Exception) {
+            Log.e(TAG(), "launchVivaLinkApp: FAILED TO LAUNCH RAPTOR", exception)
+        }
 
-        startActivity(raptorIntent)
         showToast("PFA Launched")
         Log.i(TAG(), "launchRaptorApp: COMPLETED")
     }
