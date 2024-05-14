@@ -13,8 +13,8 @@ android {
         applicationId = "com.currenthealth.raptorhealthmonitor"
         minSdk = 24
         targetSdk = 34
-        versionCode = 3
-        versionName = "1.4"
+        versionCode = 4
+        versionName = "1.6"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
